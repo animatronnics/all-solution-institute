@@ -98,7 +98,6 @@
             position: relative;
             overflow: hidden;
         }
-        /* Subtle background pattern effect */
         .hero::before {
             content: '';
             position: absolute;
@@ -146,6 +145,8 @@
             box-shadow: 0 10px 25px rgba(167, 209, 41, 0.3);
             transition: all 0.3s ease;
             text-transform: uppercase;
+            cursor: pointer;
+            border: none;
         }
         .cta-btn:hover {
             transform: translateY(-5px);
@@ -363,6 +364,93 @@
         .whatsapp-float:hover {
             transform: scale(1.05);
         }
+
+        /* --- LEAD POPUP STYLES --- */
+        .popup-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .popup-overlay.show {
+            display: flex;
+            opacity: 1;
+        }
+        .popup-content {
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border-top: 6px solid var(--main-highlight-green);
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+        }
+        .popup-overlay.show .popup-content {
+            transform: translateY(0);
+        }
+        .close-btn {
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 30px;
+            font-weight: bold;
+            color: #999;
+            cursor: pointer;
+            transition: 0.2s;
+            line-height: 1;
+        }
+        .close-btn:hover { color: #333; }
+        .popup-content h3 {
+            color: var(--main-dark-green);
+            font-size: 26px;
+            margin: 0 0 10px;
+            font-weight: 800;
+        }
+        .popup-content p {
+            color: var(--text-gray);
+            font-size: 15px;
+            margin-bottom: 25px;
+        }
+        .form-input {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 15px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--main-highlight-green);
+        }
+        .submit-btn {
+            width: 100%;
+            background: var(--main-dark-green);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 80, 46, 0.2);
+        }
+        .submit-btn:hover {
+            background: var(--main-highlight-green);
+            color: var(--main-dark-green);
+        }
         
         /* Responsive Adjustments */
         @media (max-width: 768px) {
@@ -374,6 +462,7 @@
             .section-title { font-size: 30px; }
             .gallery img { height: 260px; }
             .whatsapp-float { bottom: 20px; right: 20px; padding: 14px 20px; font-size: 16px; }
+            .popup-content { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -396,9 +485,9 @@
         <div class="hero-badge">Admission Open - Limited Seats</div>
         <h1>Become a Certified <span>Mobile & Laptop</span> Repair Expert</h1>
         <p>Master basic to chip-level repairing with 100% practical training. Build highly demanded skills and start earning a professional income.</p>
-        <a href="https://wa.me/917701985557?text=Hi!%20I%20want%20to%20enroll%20in%20the%20Mobile%20and%20Laptop%20Repairing%20Course." class="cta-btn" target="_blank">
+        <button onclick="openPopup()" class="cta-btn">
             Aaj hi Admission lein! ➔
-        </a>
+        </button>
     </section>
 
     <section class="features-section">
@@ -488,6 +577,73 @@
     <a href="https://wa.me/917701985557?text=Hello!%20I%20am%20interested%20in%20joining%20the%20repairing%20course.%20Please%20share%20details." class="whatsapp-float" target="_blank">
         <span style="font-size: 24px;">💬</span> Chat on WhatsApp
     </a>
+
+    <div class="popup-overlay" id="leadPopup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">×</span>
+            <h3>Get a Free Callback!</h3>
+            <p>Drop your details below and our expert trainer will contact you shortly.</p>
+            <form id="leadForm">
+                <input type="text" id="userName" class="form-input" placeholder="Your Full Name" required>
+                <input type="tel" id="userNumber" class="form-input" placeholder="Your Mobile Number" required pattern="[0-9]{10}" title="Please enter a valid 10-digit number">
+                <input type="text" id="userLocation" class="form-input" placeholder="Your City/Location" required>
+                <button type="submit" class="submit-btn">Get Course Details ➔</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Get popup element
+        const popup = document.getElementById('leadPopup');
+
+        // Function to open popup
+        function openPopup() {
+            popup.classList.add('show');
+        }
+
+        // Function to close popup
+        function closePopup() {
+            popup.classList.remove('show');
+        }
+
+        // Show popup automatically after 10 seconds
+        setTimeout(() => {
+            openPopup();
+        }, 10000);
+
+        // Close popup if user clicks outside of the white box
+        window.onclick = function(event) {
+            if (event.target == popup) {
+                closePopup();
+            }
+        }
+
+        // Handle the Form Submission
+        document.getElementById('leadForm').addEventListener('submit', function(event) {
+            // Stop the page from reloading
+            event.preventDefault(); 
+
+            // Get the values the user typed
+            const name = document.getElementById('userName').value;
+            const number = document.getElementById('userNumber').value;
+            const location = document.getElementById('userLocation').value;
+
+            // Format the message for WhatsApp
+            const message = `*New Admission Lead!*%0A%0A*Name:* ${name}%0A*Number:* ${number}%0A*Location:* ${location}%0A%0A_I want to know more about the Mobile & Laptop Repairing Course._`;
+
+            // Create the WhatsApp link
+            const whatsappUrl = `https://wa.me/917701985557?text=${message}`;
+
+            // Close the popup
+            closePopup();
+
+            // Clear the form
+            document.getElementById('leadForm').reset();
+
+            // Open WhatsApp in a new tab
+            window.open(whatsappUrl, '_blank');
+        });
+    </script>
 
 </body>
 </html>
