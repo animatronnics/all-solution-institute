@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Solution Institute | Mobile & Laptop Repairing Course Delhi</title>
+    <style>
+        /* Modern Color Palette & Variables */
+        :root {
+            --main-dark-green: #00502e; 
+            --main-highlight-green: #a7d129; 
+            --accent-green-dark: #8cb021;
+            --text-dark: #1a1a1a;
+            --text-gray: #555;
+            --text-light: #ffffff;
+            --bg-light: #f8faf9;
+            --card-shadow: 0 10px 30px rgba(0, 80, 46, 0.08);
+            --hover-shadow: 0 15px 40px rgba(0, 80, 46, 0.15);
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.7;
+        }
+        
+        /* Header */
+        .header {
+            background-color: #ffffff;
+            padding: 12px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+        .header .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .header .logo-img {
+            height: 65px; 
+            width: auto;
+            margin-right: 15px;
+            border-radius: 50%; 
+            border: 2px solid var(--main-highlight-green);
+        }
+        .header .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .header .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--main-dark-green);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 0;
+            line-height: 1.2;
+        }
+        .header .logo-subtitle {
+            font-size: 13px;
+            color: var(--text-gray);
+            margin: 0;
+            font-weight: 600;
+        }
+        
+        .contact-pill {
+            font-size: 16px;
+            font-weight: bold;
+            background: var(--main-dark-green);
+            color: var(--text-light);
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        .contact-pill:hover {
+            background: var(--main-highlight-green);
+            color: var(--main-dark-green);
+        }
+
+        /* High-Impact Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--main-dark-green) 0%, #003820 100%);
+            color: var(--text-light);
+            text-align: center;
+            padding: 80px 20px 90px;
+            position: relative;
+            overflow: hidden;
+        }
+        /* Subtle background pattern effect */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at center, rgba(167, 209, 41, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-badge {
+            background: rgba(167, 209, 41, 0.2);
+            color: var(--main-highlight-green);
+            border: 1px solid var(--main-highlight-green);
+            display: inline-block;
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin: 0 0 15px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+        .hero h1 span {
+            color: var(--main-highlight-green);
+        }
+        .hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 35px;
+            color: #e0e0e0;
+        }
+        .cta-btn {
+            background-color: var(--main-highlight-green);
+            color: var(--main-dark-green);
+            padding: 18px 45px;
+            text-decoration: none;
+            font-size: 22px;
+            font-weight: 800;
+            border-radius: 50px;
+            display: inline-block;
+            box-shadow: 0 10px 25px rgba(167, 209, 41, 0.3);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+        .cta-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(167, 209, 41, 0.4);
+            background-color: var(--text-light);
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            padding: 80px 20px 30px;
+            font-size: 38px;
+            color: var(--main-dark-green);
+            font-weight: 800;
+            margin: 0;
+        }
+        .section-title span {
+            color: var(--accent-green-dark);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 18px;
+            max-width: 600px;
+            margin: -20px auto 50px;
+        }
+
+        /* Container & Grid */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            padding-bottom: 40px;
+        }
+        
+        /* Premium Cards */
+        .card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            border-top: 5px solid var(--main-highlight-green);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+        }
+        .card .icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: inline-block;
+            background: rgba(167, 209, 41, 0.15);
+            width: 90px;
+            height: 90px;
+            line-height: 90px;
+            border-radius: 50%;
+        }
+        .card h4 {
+            color: var(--main-dark-green);
+            font-size: 24px;
+            margin: 0 0 15px;
+            font-weight: 700;
+        }
+        .card p {
+            color: var(--text-gray);
+            font-size: 16px;
+            margin: 0;
+        }
+
+        /* Info / Features Banner */
+        .features-section {
+            background-color: #ffffff;
+            padding: 40px 0 60px;
+        }
+        .info-flex {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .info-item {
+            flex: 1;
+            min-width: 280px;
+            padding: 25px;
+            background: var(--bg-light);
+            border-radius: 12px;
+            border-left: 4px solid var(--main-dark-green);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        .info-item .emoji {
+            font-size: 30px;
+        }
+        .info-item div h4 {
+            color: var(--main-dark-green);
+            font-size: 20px;
+            margin: 0 0 8px;
+        }
+        .info-item div p {
+            margin: 0;
+            color: var(--text-gray);
+            font-size: 15px;
+        }
+
+        /* Photo Gallery Section */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            padding: 0 20px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.4s ease;
+        }
+        .gallery img:hover {
+            transform: scale(1.02);
+            box-shadow: var(--hover-shadow);
+        }
+
+        /* Repositioned Promo Banner */
+        .promo-section {
+            max-width: 1000px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+            text-align: center;
+        }
+        .promo-banner {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: var(--hover-shadow);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--main-dark-green);
+            color: var(--text-light);
+            text-align: center;
+            padding: 60px 20px 30px;
+        }
+        .footer h3 {
+            color: var(--main-highlight-green);
+            font-size: 32px;
+            margin: 0 0 15px;
+            font-weight: 800;
+        }
+        .footer p {
+            font-size: 16px;
+            margin: 8px 0;
+            color: #d1d1d1;
+        }
+        
+        .social-links {
+            margin: 30px 0;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .social-links p {
+            color: var(--main-highlight-green);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+        .social-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: var(--main-highlight-green);
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: var(--text-light);
+            padding: 16px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 18px;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .header { justify-content: center; text-align: center; padding: 15px; }
+            .header .logo-container { flex-direction: column; margin-bottom: 15px; }
+            .header .logo-img { margin-right: 0; margin-bottom: 10px; height: 60px; }
+            .hero h1 { font-size: 34px; }
+            .hero p { font-size: 18px; }
+            .section-title { font-size: 30px; }
+            .gallery img { height: 260px; }
+            .whatsapp-float { bottom: 20px; right: 20px; padding: 14px 20px; font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo-container">
+            <img src="logo111.jpeg" alt="All Solution Institute Logo" class="logo-img">
+            <div class="logo-text">
+                <div class="logo">All Solution Institute</div>
+                <div class="logo-subtitle">Delhi's No.1 Mobile & Laptop Repairing Institute</div>
+            </div>
+        </div>
+        <a href="tel:7701985557" class="contact-pill">
+            📞 7701985557
+        </a>
+    </header>
+
+    <section class="hero">
+        <div class="hero-badge">Admission Open - Limited Seats</div>
+        <h1>Become a Certified <span>Mobile & Laptop</span> Repair Expert</h1>
+        <p>Master basic to chip-level repairing with 100% practical training. Build highly demanded skills and start earning a professional income.</p>
+        <a href="https://wa.me/917701985557?text=Hi!%20I%20want%20to%20enroll%20in%20the%20Mobile%20and%20Laptop%20Repairing%20Course." class="cta-btn" target="_blank">
+            Aaj hi Admission lein! ➔
+        </a>
+    </section>
+
+    <section class="features-section">
+        <div class="container">
+            <div class="info-flex">
+                <div class="info-item">
+                    <div class="emoji">🏢</div>
+                    <div>
+                        <h4>Hostel Facility Available</h4>
+                        <p>Safe & comfortable stay for outstation students.</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="emoji">💼</div>
+                    <div>
+                        <h4>Job & Shop Setup Guidance</h4>
+                        <p>We help you secure a job or open your own business.</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="emoji">📜</div>
+                    <div>
+                        <h4>ISO Certified Certificate</h4>
+                        <p>Get a recognized certificate to build customer trust.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <h2 class="section-title">Professional <span>Course Modules</span></h2>
+        <p class="section-subtitle">Comprehensive hands-on training from industry experts to make you field-ready.</p>
+        
+        <div class="grid">
+            <div class="card">
+                <div class="icon">📱</div>
+                <h4>Android & iPhone Repairing</h4>
+                <p>Complete hardware & software troubleshooting. Master dead phone revival, screen replacements, and complex network fault finding.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">💻</div>
+                <h4>Laptop & Chip Level Training</h4>
+                <p>Advanced motherboard schematic tracing, testing voltages, and micro-soldering ICs to become a specialist in chip-level diagnostics.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🔬</div>
+                <h4>100% Practical Training</h4>
+                <p>No boring lectures. Learn by doing on real motherboards using modern microscopes, DC power supplies, and hot air stations.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="section-title">Our Advanced <span>Training Lab</span></h2>
+        <p class="section-subtitle">See where our students transform into professional technicians.</p>
+        <div class="gallery">
+            <img src="ppp1.jpeg" alt="Student doing practical chip-level repair under a microscope">
+            <img src="ppp2.jpeg" alt="Happy students giving a thumbs up in the classroom">
+            <img src="ppp3.jpeg" alt="Our training lab with fully equipped practical workbenches">
+        </div>
+    </section>
+
+    <section class="promo-section">
+        <img src="ppp4.jpeg" alt="All Solution Institute Mobile Repairing Course Banner with Trainer" class="promo-banner">
+    </section>
+
+    <footer class="footer">
+        <h3>All Solution Institute</h3>
+        <p>📍 <strong>Location:</strong> Shadipur Metro, Delhi</p>
+        <p>📞 <strong>Helpline:</strong> +91 7701985557</p>
+        
+        <div class="social-links">
+            <p>See our daily updates on Instagram</p>
+            <a href="https://www.instagram.com/as_institute_delhi?igsh=MWFyMjkzNGdlZWIxdg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer">@as_institute_delhi</a>
+            <span>|</span>
+            <a href="https://www.instagram.com/mhd_aakib_?igsh=MXAxZXdremZ1d2pnZQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer">@mhd_aakib_</a>
+        </div>
+        
+        <div style="margin-top: 20px; padding-top: 10px;">
+            <p style="font-size: 14px; color: #888;">© 2026 All Solution Institute. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/917701985557?text=Hello!%20I%20am%20interested%20in%20joining%20the%20repairing%20course.%20Please%20share%20details." class="whatsapp-float" target="_blank">
+        <span style="font-size: 24px;">💬</span> Chat on WhatsApp
+    </a>
+
+</body>
+</html>
