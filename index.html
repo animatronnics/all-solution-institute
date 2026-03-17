@@ -263,25 +263,25 @@
             font-size: 15px;
         }
 
-        /* Photo Gallery Section */
+        /* Photo & Video Gallery Section */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjusted for 4 items */
             gap: 25px;
             max-width: 1200px;
             margin: 0 auto 80px;
             padding: 0 20px;
         }
-        .gallery img {
+        .gallery img, .gallery video {
             width: 100%;
-            height: 320px;
+            height: 400px;
             object-fit: cover;
             border-radius: 16px;
             box-shadow: var(--card-shadow);
-            transition: transform 0.4s ease;
+            transition: all 0.4s ease;
         }
-        .gallery img:hover {
-            transform: scale(1.02);
+        .gallery img:hover, .gallery video:hover {
+            transform: translateY(-5px);
             box-shadow: var(--hover-shadow);
         }
 
@@ -371,7 +371,7 @@
             top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.8);
             z-index: 2000;
-            display: none; /* Hidden by default */
+            display: none; 
             justify-content: center;
             align-items: center;
             opacity: 0;
@@ -460,7 +460,7 @@
             .hero h1 { font-size: 34px; }
             .hero p { font-size: 18px; }
             .section-title { font-size: 30px; }
-            .gallery img { height: 260px; }
+            .gallery img, .gallery video { height: 320px; }
             .whatsapp-float { bottom: 20px; right: 20px; padding: 14px 20px; font-size: 16px; }
             .popup-content { padding: 30px 20px; }
             .social-links a { display: block; margin: 10px 0; }
@@ -546,11 +546,17 @@
     </section>
 
     <section>
-        <h2 class="section-title">Our Advanced <span>Training Lab</span></h2>
-        <p class="section-subtitle">See where our students transform into professional technicians.</p>
+        <h2 class="section-title">Hear From Our Students <span>& See Our Lab</span></h2>
+        <p class="section-subtitle">Real results from our hands-on training center in Delhi.</p>
         <div class="gallery">
             <img src="ppp1.jpeg" alt="Student doing practical chip-level repair under a microscope">
+            
             <img src="ppp2.jpeg" alt="Happy students giving a thumbs up in the classroom">
+            
+            <video src="Testimonial.mp4" autoplay loop muted playsinline controls poster="ppp2.jpeg" style="cursor: pointer;">
+                Your browser does not support the video tag.
+            </video>
+
             <img src="ppp3.jpeg" alt="Our training lab with fully equipped practical workbenches">
         </div>
     </section>
