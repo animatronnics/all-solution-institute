@@ -266,7 +266,7 @@
         /* Photo & Video Gallery Section */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjusted for 4 items */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
             gap: 25px;
             max-width: 1200px;
             margin: 0 auto 80px;
@@ -553,7 +553,7 @@
             
             <img src="ppp2.jpeg" alt="Happy students giving a thumbs up in the classroom">
             
-            <video src="Testimonial.mp4" autoplay loop muted playsinline controls poster="ppp2.jpeg" style="cursor: pointer;">
+            <video id="testimonialVideo" src="Testimonial.mp4#t=0.001" loop muted playsinline controls style="cursor: pointer; background-color: #000;">
                 Your browser does not support the video tag.
             </video>
 
@@ -603,55 +603,60 @@
     </div>
 
     <script>
-        // Get popup element
+        // --- 1. POPUP LOGIC ---
         const popup = document.getElementById('leadPopup');
 
-        // Function to open popup
         function openPopup() {
             popup.classList.add('show');
         }
 
-        // Function to close popup
         function closePopup() {
             popup.classList.remove('show');
         }
 
-        // Show popup automatically after 10 seconds
         setTimeout(() => {
             openPopup();
         }, 10000);
 
-        // Close popup if user clicks outside of the white box
         window.onclick = function(event) {
             if (event.target == popup) {
                 closePopup();
             }
         }
 
-        // Handle the Form Submission
+        // --- 2. WHATSAPP FORM LOGIC ---
         document.getElementById('leadForm').addEventListener('submit', function(event) {
-            // Stop the page from reloading
             event.preventDefault(); 
-
-            // Get the values the user typed
             const name = document.getElementById('userName').value;
             const number = document.getElementById('userNumber').value;
             const location = document.getElementById('userLocation').value;
-
-            // Format the message for WhatsApp
             const message = `*New Admission Lead!*%0A%0A*Name:* ${name}%0A*Number:* ${number}%0A*Location:* ${location}%0A%0A_I want to know more about the Mobile & Laptop Repairing Course._`;
-
-            // Create the WhatsApp link
             const whatsappUrl = `https://wa.me/917701985557?text=${message}`;
-
-            // Close the popup
             closePopup();
-
-            // Clear the form
             document.getElementById('leadForm').reset();
-
-            // Open WhatsApp in a new tab
             window.open(whatsappUrl, '_blank');
+        });
+
+        // --- 3. VIDEO PLAY ON SCROLL LOGIC ---
+        document.addEventListener("DOMContentLoaded", function() {
+            const video = document.getElementById('testimonialVideo');
+            
+            // Check if IntersectionObserver is supported (it is in all modern browsers)
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        // If the video is at least 50% visible on the screen
+                        if (entry.isIntersecting) {
+                            video.play().catch(e => console.log("Autoplay was prevented by browser:", e));
+                        } else {
+                            // Pause the video when user scrolls past it
+                            video.pause();
+                        }
+                    });
+                }, { threshold: 0.5 }); // 0.5 means trigger when 50% is in view
+
+                observer.observe(video);
+            }
         });
     </script>
 
